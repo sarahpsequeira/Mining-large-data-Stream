@@ -139,7 +139,7 @@ class Thread1 implements Runnable{
                 System.out.println("Server not available");
                 System.exit(0);
             }
-            //Socket s = new Socket("127.0.0.1",3333);
+          
             
             //Get Input
             BufferedReader din=new BufferedReader(new InputStreamReader(s.getInputStream()));
@@ -194,13 +194,10 @@ class Thread1 implements Runnable{
                 }
                 MiningDataStream.lock.release();                           
             }
-            //System.out.println(Input_Stream);
-            //System.out.println(Bucket);
             
-        //s.close();
         } catch (Exception e) {
             e.printStackTrace();
-           // Logger.getLogger(Run.class.getName()).log(Level.SEVERE, null, ex);
+          
         }      
     }
 }
@@ -209,7 +206,7 @@ class Thread2 implements Runnable{
 
     @Override
     public void run() {
-        //System.out.println("Thread2");
+       
         long query_bit=0;
         boolean increment=false;
         String test_string="w";
@@ -266,7 +263,7 @@ class Thread2 implements Runnable{
                 }
                 if(valid==false)
                 {
-                    //valid=true;
+                    
                     System.out.println("Invalid Query");
                     MiningDataStream.lock.release();
                     continue;
@@ -276,7 +273,7 @@ class Thread2 implements Runnable{
                 
                 int count_ones=0;
                 increment=false;
-                //String Query=bd.readLine();
+                
                 //check if query is in right format What is the number of ones for last <k> data?
                 if(query_bit<=MiningDataStream.window_size)
                 {
@@ -320,31 +317,6 @@ class Thread2 implements Runnable{
                         }
                         else
                         {
-                            /*
-                            increment = false;
-                            if(i!=0)
-                            {
-                                if(time_counter>MiningDataStream.Bucket.get(i-1).get(0))
-                                {
-                                    if(MiningDataStream.Bucket.get(i).get(1)!=1)
-                                    {
-                                        count_ones=count_ones+(MiningDataStream.Bucket.get(i).get(1)/2);
-                                        increment=true;
-                                    }
-                                }
-                            }
-                            if(time_counter==MiningDataStream.Bucket.get(i).get(0)&& increment==false)
-                            {
-                                if(MiningDataStream.Bucket.get(i).get(1)!=1)
-                                {
-                                    count_ones=count_ones+(MiningDataStream.Bucket.get(i).get(1)/2);
-                                    increment=true;
-                                }
-                            }
-                            if (increment==false)
-                            {
-                                count_ones=count_ones+MiningDataStream.Bucket.get(i).get(1);
-                            }*/
                             count_ones=count_ones+MiningDataStream.Bucket.get(i).get(1);
                         }
                     }
@@ -356,7 +328,7 @@ class Thread2 implements Runnable{
                         }
                     }
                     System.out.println("The number of ones of last "+query_bit+ " data is estimated "+count_ones);
-                    //System.out.println(MiningDataStream.Bucket);
+                    
                 }
                 MiningDataStream.lock.release();
             }
